@@ -3,7 +3,7 @@
 # '''
 class LinkedPair:
     def __init__(self, key, value):
-        self.key = key
+        self.key = key # to find which one is correct
         self.value = value
         self.next = None
 
@@ -51,7 +51,16 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        print("Value", value)
+        index = self._hash_mod(key)
+        print("Index", index)
+        current_value = self.storage[index]
+        print("current_value", current_value)
+        if current_value is not None:
+            print("Warning", value, " is overwriting ", current_value)
+        self.storage[index] = value
+        print("value should equal", value, "=", self.storage[index])
+        print("----------------------------")
 
 
 
