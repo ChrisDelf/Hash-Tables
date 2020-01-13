@@ -51,17 +51,21 @@ class HashTable:
 
         Fill this in.
         '''
-        print("Value", value)
+        # print("Value", value)
         index = self._hash_mod(key)
         print("Index", index)
         current_value = self.storage[index]
-        print("current_value", current_value)
+        # print("current_value", current_value)
         if current_value is not None:
-            print("Warning", value, " is overwriting ", current_value)
-        self.storage[index] = value
-        print("value should equal", value, "=", self.storage[index])
-        print("----------------------------")
-
+            print("Warning", value, " is overwriting ", current_value.value)
+            newLinkPair = LinkedPair(key, value)
+            newLinkPair.next = self.storage[index]
+            self.storage[index] = newLinkPair
+        else:
+            self.storage[index] = LinkedPair(key, value)
+        # print("value should equal", value, "=", self.storage[index])
+        # print("----------------------------")
+        #
 
 
     def remove(self, key):
@@ -72,7 +76,9 @@ class HashTable:
 
         Fill this in.
         '''
+
         pass
+
 
 
     def retrieve(self, key):
@@ -83,7 +89,21 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+
+        index = self._hash_mod(key)
+        current_key = self.storage[index]
+        print("--------------------------------")
+        while current_key:
+            if current_key.key != key:
+                current_key = current_key.next
+            else:
+                print("Retrieve", current_key.value)
+                return current_key.value
+
+        print("------------------------------")
+        return None
+
+
 
 
     def resize(self):
