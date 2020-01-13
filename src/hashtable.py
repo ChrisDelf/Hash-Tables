@@ -76,8 +76,13 @@ class HashTable:
 
         Fill this in.
         '''
+        index = self._hash_mod(key)
+        if self.storage[index] is None:
+            print("The Key has not been found")
+        else:
+            self.storage[index] = None
 
-        pass
+
 
 
 
